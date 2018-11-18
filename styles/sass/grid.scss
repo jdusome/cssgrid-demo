@@ -1,0 +1,229 @@
+@charset "UTF-8";
+
+/*
+//================================================================================
+// Variables
+//================================================================================
+*/
+$colour1: #5666CC;
+$colour2: #001599;
+$colour3: #85D6FF;
+$colour4: #FFDDC5;
+$colour5: #CC7556;
+$colour6: #4C3D37;
+$colour7: #B2AF54;
+
+/*
+//================================================================================
+// Mixins
+//================================================================================
+*/
+
+/** Media Queries **/
+@mixin extra-small {
+    @media (max-width: 575px) { @content; }
+}
+
+@mixin small {
+    @media (max-width: 768px) { @content; }
+}
+
+@mixin medium {
+    @media (max-width: 992px) { @content; }
+}
+
+@mixin large {
+    @media (max-width: 1200px) { @content; }
+}
+
+@mixin extra-large {
+    @media (max-width: 1450px) { @content; }
+}
+
+/*
+//================================================================================
+// App CSS
+//================================================================================
+*/
+
+html,body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*
+//================================================================================
+// Bootstrap Grid
+//================================================================================
+*/
+main.bootstrap-grid {
+    display: none;
+
+    width: calc(100% / 9 * 7);
+    height: calc(100% / 9 * 7);
+
+    @include extra-small {
+        width: 100%;
+        height: 100%;
+    }
+
+    > section:nth-of-type(1){
+        height: calc(100% / 7 * 1);
+
+        .area1 {
+            background-color: $colour1;
+        }
+    }
+
+    > section:nth-of-type(2){
+        height: calc(100% / 7 * 5);
+
+        .area2 {
+            background-color: $colour2;
+        }
+
+        .area3 {
+            background-color: $colour3;
+        }
+
+        .area4 {
+            height: calc(100% / 5 * 4);
+            background-color: $colour4;
+
+            @include extra-small{
+                height: 100%;
+            }
+        }
+
+        .area5 {
+            background-color: $colour5;
+        }
+
+        .area6 {
+            background-color: $colour6;
+        }
+
+        .area3 + div {
+            > .row {
+                height: 100%;
+            }
+        }
+
+        .area4 + div {
+            height: calc(100% / 5 * 1);
+
+            @include extra-small{
+                height: 100%;
+            }
+
+            > .row {
+                height: 100%;
+            }
+        }
+    }
+
+    > section:nth-of-type(3){
+        height: calc(100% / 7 * 1);
+
+        .area7 {
+            background-color: $colour7;
+        }
+    }
+}
+
+/*
+//================================================================================
+// CSS Grid
+//================================================================================
+*/
+main.css-grid {
+    width: calc(100% / 9 * 7);
+    height: calc(100% / 9 * 7);
+
+    display: grid;
+    grid-template-columns: repeat(7, calc(100%/7));
+    grid-template-rows: repeat(7, calc(100%/7));
+
+    /*
+    grid-row-gap: 5px;
+    grid-column-gap: 5px;
+    */
+
+    grid-template-areas: "area1 area1 area1 area1 area1 area1 area1"
+                        "area2 area2 area3 area3 area3 area4 area4"
+                        "area2 area2 area3 area3 area3 area4 area4"
+                        "area2 area2 area3 area3 area3 area4 area4"
+                        "area2 area2 area3 area3 area3 area4 area4"
+                        "area2 area2 area3 area3 area3 area5 area6"
+                        "area7 area7 area7 area7 area7 area7 area7";
+                        
+    @include medium {
+        grid-template-areas: "area1 area2 area3 area4 area5 area6 area7"
+                        "area1 area2 area3 area4 area5 area6 area7"
+                        "area1 area2 area3 area4 area5 area6 area7"
+                        "area1 area2 area3 area4 area5 area6 area7"
+                        "area1 area2 area3 area4 area5 area6 area7"
+                        "area1 area2 area3 area4 area5 area6 area7"
+                        "area1 area2 area3 area4 area5 area6 area7";
+    }
+
+    @include extra-small {
+        width: 100%;
+        height: 100%;
+        grid-template-columns: repeat(9, calc(100%/9));
+        grid-template-rows: repeat(9, calc(100%/9));
+        
+        grid-template-areas: "area1 area1 area1 area1 area1 area1 area1 area1 area1"
+                        "area2 area2 area2 area2 area2 area2 area2 area2 area2"
+                        "area2 area2 area2 area2 area2 area2 area2 area2 area2"
+                        "area3 area3 area3 area3 area3 area3 area3 area3 area3"
+                        "area3 area3 area3 area3 area3 area3 area3 area3 area3"
+                        "area3 area3 area3 area3 area3 area3 area3 area3 area3"
+                        "area4 area4 area4 area4 area4 area4 area5 area5 area5"
+                        "area4 area4 area4 area4 area4 area4 area6 area6 area6"
+                        "area7 area7 area7 area7 area7 area7 area7 area7 area7";
+    }
+
+    > section:nth-of-type(1){
+        background-color: $colour1;
+        grid-area: area1;
+
+        /*
+        grid-column: 1 / 8;
+        grid-row: 1 / 2;
+        */
+    }
+
+    > section:nth-of-type(2){
+        background-color: $colour2;
+        grid-area: area2;
+    }
+
+    > section:nth-of-type(3){
+        background-color: $colour3;
+        grid-area: area3;
+    }
+
+    > section:nth-of-type(4){
+        background-color: $colour4;
+        grid-area: area4;
+    }
+
+    > section:nth-of-type(5){
+        background-color: $colour5;
+        grid-area: area5;
+    }
+
+    > section:nth-of-type(6){
+        background-color: $colour6;
+        grid-area: area6;
+    }
+
+    > section:nth-of-type(7){
+        background-color: $colour7;
+        grid-area: area7;
+    }
+}
